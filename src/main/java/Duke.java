@@ -31,37 +31,57 @@ public class Duke {
             else if(inputstring.split(" ")[0].equals("done")){
                 // MARKIN TASK DONE //
                 //System.out.println(Integer.parseInt(inputstring.split(" ")[1]));
-                markdone(Integer.parseInt(inputstring.split(" ")[1]));
+                try{
+                    markdone(Integer.parseInt(inputstring.split(" ")[1]));
+                }
+                catch(Exception e){
+                    output("☹ OOPS!!! The description of a done cannot be empty.");
+                }
             }
             else if(inputstring.split(" ")[0].equals("todo")){
                 // ADD TASK TO LIST //
-                System.out.println(inputstring.substring(5));
-                add(taskaddnum+1, 
-                    inputstring.substring(5),
-                    false,
-                    "ToDO",
-                    "__",
-                    "__");
-                taskaddnum ++;
+                try{
+                    System.out.println(inputstring.substring(5));
+                    add(taskaddnum+1, 
+                        inputstring.substring(5),
+                        false,
+                        "ToDO",
+                        "__",
+                        "__");
+                    taskaddnum ++;
+                }
+                catch(Exception e){
+                    output("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
             }   
             else if(inputstring.split(" ")[0].equals("deadline")){
-                add(taskaddnum+1, 
-                    inputstring.split("/by")[0].substring(9),
-                    false,
-                    "Deadline",
-                    "__",
-                    inputstring.split("/by ")[1]);
-                taskaddnum ++;
+                try{
+                    add(taskaddnum+1, 
+                        inputstring.split("/by")[0].substring(9),
+                        false,
+                        "Deadline",
+                        "__",
+                        inputstring.split("/by ")[1]);
+                    taskaddnum ++;
+                }
+                catch(Exception e){
+                    output("☹ OOPS!!! The description of a deadline cannot be empty.");
+                }
             }
 
             else if(inputstring.split(" ")[0].equals("event")){
-                add(taskaddnum+1, 
-                    inputstring.split("/at")[0].substring(6),
-                    false,
-                    "Event",
-                    inputstring.split("/at ")[1],
-                    "__");
-                taskaddnum ++;
+                try{
+                    add(taskaddnum+1, 
+                        inputstring.split("/at")[0].substring(6),
+                        false,
+                        "Event",
+                        inputstring.split("/at ")[1],
+                        "__");
+                    taskaddnum ++;
+                }
+                catch(Exception e){
+                    output("☹ OOPS!!! The description of a event cannot be empty.");
+                }
             }
             else{
                 output("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
