@@ -38,6 +38,14 @@ public class Duke {
                     output("☹ OOPS!!! The description of a done cannot be empty.");
                 }
             }
+            else if(inputstring.split(" ")[0].equals("delete")) {
+                try{
+                    delete(Integer.parseInt(inputstring.split(" ")[1]));
+                }
+                catch(Exception e){
+                    output("☹ OOPS!!! The description of a delete cannot be empty.");
+                }
+            }
             else if(inputstring.split(" ")[0].equals("todo")){
                 // ADD TASK TO LIST //
                 try{
@@ -68,7 +76,6 @@ public class Duke {
                     output("☹ OOPS!!! The description of a deadline cannot be empty.");
                 }
             }
-
             else if(inputstring.split(" ")[0].equals("event")){
                 try{
                     add(taskaddnum+1, 
@@ -86,8 +93,7 @@ public class Duke {
             else{
                 output("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            count +=1;
-            
+            count +=1;  
         }
     }
 
@@ -96,6 +102,7 @@ public class Duke {
         System.out.println("    "+word);
         System.out.println(line);
     }
+
     public static void add(int count, String input, boolean status,String Type,String range,String time){
         //System.out.println(input);
         if(Type.equals("ToDO")){
@@ -127,6 +134,18 @@ public class Duke {
         }
     }
 
+    public static void delete(int index){
+        index --;
+        
+        System.out.println(line);
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(storage.get(index));
+        storage.remove(index);
+        System.out.println("Now you have " + storage.size() + " tasks in the list.");
+        System.out.println(line);
+        
+    }
+    
     public static void markdone(int index){
         index --;
         if(storage.size()>0){
