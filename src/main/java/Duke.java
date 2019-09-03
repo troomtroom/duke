@@ -1,12 +1,16 @@
 import java.io.*;
 import java.util.*;
 import java.util.Date;
+
 public class Duke {
+    
     static String line = "    ____________________________________________________________";
-    public static LinkedList<Task> storage = new LinkedList<Task>(); 
+    public static LinkedList<Task> storage = new LinkedList<>(); 
+    public static Scanner sc = new Scanner(System.in);
+    
     public static void main(String[] args) {
+        loadtext();
         
-        Scanner sc = new Scanner(System.in);
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -14,14 +18,18 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println(line);
+        textprocesser();
+    }
 
-        int count = 0;
-        int taskaddnum = 0;
+    public static void textprocesser(){
+        int count = storage.size();
+        int taskaddnum = storage.size();
         while(true){
             String inputstring = sc.nextLine();
             if(inputstring.equals("bye")){
                 // END //
                 output("Bye. Hope to see you again soon!");
+                savetofile();
                 break;
             }
             else if(inputstring.equals("list")){
@@ -49,7 +57,7 @@ public class Duke {
             else if(inputstring.split(" ")[0].equals("todo")){
                 // ADD TASK TO LIST //
                 try{
-                    System.out.println(inputstring.substring(5));
+                    //System.out.println(inputstring.substring(5));
                     add(taskaddnum+1, 
                         inputstring.substring(5),
                         false,
@@ -64,12 +72,16 @@ public class Duke {
             }   
             else if(inputstring.split(" ")[0].equals("deadline")){
                 try{
-                    add(taskaddnum+1, 
-                        inputstring.split("/by")[0].substring(9),
-                        false,
-                        "Deadline",
-                        "__",
-                        inputstring.split("/by ")[1]);
+                    String bydate = inputstring.split("/by ")[1];
+                    int year = (int)bydate.substring(5,9);
+                    int month = (int)bydate.substring(2,4);
+                    int day = (int)bydate.substring(0,1);
+                    add(taskaddnum+1, // index
+                        inputstring.split("/by")[0].substring(9), // description
+                        false,// done
+                        "Deadline",//type
+                        "__",////at 
+                        new Date(); // by // 2/12/2019 1800
                     taskaddnum ++;
                 }
                 catch(Exception e){
@@ -170,5 +182,76 @@ public class Duke {
             output("storage is empty, does not exist");
         }
 
+    }
+
+    public static void loadtext(){
+        try{
+            File file = new File("warehouse.txt");
+            Scanner filereader = new Scanner(file);
+
+            while (filereader.hasNextLine()){
+                String line = filereader.nextLine();
+                String[] array = line.split(";");
+                String type = array[0];
+                String description = array[2];
+                Boolean doneval = false;
+                if(array[1].equals("False")) doneval = false;
+                else if(array[1].equals("True")) doneval = true;
+                else output("check error 5  "+ array[1]);
+                //output(Arrays.toString(array));
+
+                if(type.equals("T")){
+                    storage.add(new ToDO(description,doneval,"TODO"));
+                }
+                else if(type.equals("E")){
+                    storage.add(new Event(description, doneval, "Event",array[3]));
+                }
+                else if(type.equals("D")){
+                    storage.add(new Deadline(description,doneval,"Deadline",array[3]));
+                }
+            }
+        }
+        catch(IOException a){
+            a.printStackTrace();
+        }
+    }
+
+    public static void savetofile(){
+        String entrystring = "";
+
+        for(int i = 0; i<storage.size();i++){
+            Task ob = storage.get(i);
+            if(ob.getType().equals("ToDO")){
+                entrystring += ob.getLetterType() + ";"
+                               + ob.getisDone() + ";"
+                               + ob.getDescription() + ";"
+                               + "\n";
+            }
+            else if(ob.getType().equals("Deadline")){
+                entrystring += ob.getLetterType() + ";"
+                               + ob.getisDone() + ";"
+                               + ob.getDescription() + ";"
+                               + ((Deadline)ob).getTime() + ";"
+                               + "\n";
+            }
+            else if(ob.getType().equals("Event")){
+                entrystring += ob.getLetterType() + ";"
+                               + ob.getisDone() + ";"
+                               + ob.getDescription() + ";"
+                               + ((Event)ob).getRange() + ";"
+                               + "\n";
+            }
+            else{
+                output("check error 3");
+            }
+        }
+        try{
+            FileWriter fw = new FileWriter("./warehouse.txt");
+            fw.write(entrystring);
+            fw.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
