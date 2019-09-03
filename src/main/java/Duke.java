@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import java.util.Date;
+
 public class Duke {
     static String line = "    ____________________________________________________________";
     public static LinkedList<Task> storage = new LinkedList<Task>(); 
@@ -54,22 +55,31 @@ public class Duke {
                         inputstring.substring(5),
                         false,
                         "ToDO",
-                        "__",
-                        "__");
+                        new Date(),
+                        new Date());
                     taskaddnum ++;
                 }
                 catch(Exception e){
                     output("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
             }   
+
             else if(inputstring.split(" ")[0].equals("deadline")){
+                String bydate = " "+inputstring.split("/by ")[1];
+                String[] seperated = bydate.split("/");
+                String[] temp = seperated[2].split(" ");
+                int year = Integer.parseInt(temp[0].trim());
+                int month = Integer.parseInt(seperated[1].trim());
+                int date = Integer.parseInt(seperated[0].trim());
+                int hour = Integer.parseInt(temp[1].substring(0,2).trim());
+                int second = Integer.parseInt(temp[1].substring(2,4).trim());
                 try{
                     add(taskaddnum+1, 
                         inputstring.split("/by")[0].substring(9),
                         false,
                         "Deadline",
-                        "__",
-                        inputstring.split("/by ")[1]);
+                        new Date(),//at
+                        new Date(year,month,date,hour,second));//by
                     taskaddnum ++;
                 }
                 catch(Exception e){
@@ -77,13 +87,21 @@ public class Duke {
                 }
             }
             else if(inputstring.split(" ")[0].equals("event")){
+                String bydate = " "+inputstring.split("/at ")[1];
+                String[] seperated = bydate.split("/");
+                String[] temp = seperated[2].split(" ");
+                int year = Integer.parseInt(temp[0].trim());
+                int month = Integer.parseInt(seperated[1].trim());
+                int date = Integer.parseInt(seperated[0].trim());
+                int hour = Integer.parseInt(temp[1].substring(0,2).trim());
+                int second = Integer.parseInt(temp[1].substring(2,4).trim());
                 try{
                     add(taskaddnum+1, 
                         inputstring.split("/at")[0].substring(6),
                         false,
                         "Event",
-                        inputstring.split("/at ")[1],
-                        "__");
+                        new Date(year,month,date,hour,second),//at
+                        new Date());// /by 2/12/2019 1800
                     taskaddnum ++;
                 }
                 catch(Exception e){
@@ -103,18 +121,18 @@ public class Duke {
         System.out.println(line);
     }
 
-    public static void add(int count, String input, boolean status,String Type,String range,String time){
+    public static void add(int count, String input, boolean status,String Type,Date at,Date by){
         //System.out.println(input);
         if(Type.equals("ToDO")){
             storage.add(new ToDO(input,status,Type));
             output("added: "+ storage.get(count-1));
         }
         else if(Type.equals("Event")){
-            storage.add(new Event(input,status,Type,range));
+            storage.add(new Event(input,status,Type,at));
             output("added: "+ storage.get(count-1));
         }  
         else if(Type.equals("Deadline")){
-            storage.add(new Deadline(input,status,Type,time));
+            storage.add(new Deadline(input,status,Type,by));
             output("added: "+ storage.get(count-1));
         }
         else{

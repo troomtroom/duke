@@ -1,18 +1,20 @@
+import java.util.Date;
+
 class Deadline extends Task{
     
-    String time;
+    Date by;
 
-    public Deadline(String description, boolean isDone,String type,String time){
+    public Deadline(String description, boolean isDone,String type,Date by){
         super(description,isDone,type);
         this.type = "Deadline";
-        this.time = time;
+        this.by = by;
     }
     public String toString(){
         return("[" + "D" + "][" + 
                 this.getStatusIcon() +
                 "] " + 
                 this.description + 
-                " (by: " + this.time +")"
+                " (by: " + this.by +")"
                 );
     }
 }

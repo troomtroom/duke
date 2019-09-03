@@ -1,16 +1,17 @@
+import java.util.Date;
 class Event extends Task{
     
-    String range;
-    public Event(String description, boolean isDone,String type,String range){
+    Date at;
+    public Event(String description, boolean isDone,String type,Date at){
         super(description,isDone,type);
         this.type = "Event";
-        this.range = range;
+        this.at = at;
     }
     public String toString(){
         return( "[" + "E" + "][" + 
                 this.getStatusIcon() + "] " + 
                 this.description + 
-                " (at: "+this.range + ")"
+                " (at: "+this.at + ")"
                 );
     }
 }
