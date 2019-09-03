@@ -9,6 +9,7 @@ class Deadline extends Task{
         this.type = "Deadline";
         this.by = by;
     }
+
     public String toString(){
         return("[" + "D" + "][" + 
                 this.getStatusIcon() +
@@ -16,5 +17,9 @@ class Deadline extends Task{
                 this.description + 
                 " (by: " + this.by +")"
                 );
+    }
+
+    public String getTime(){
+        return this.time;
     }
 }

@@ -14,4 +14,8 @@ class Event extends Task{
                 " (at: "+this.at + ")"
                 );
     }
+
+    public Date getat(){
+        return this.at;
+    }
 }

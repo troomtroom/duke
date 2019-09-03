@@ -12,14 +12,27 @@ abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713 yes" : "\u2718 no"); //return tick or X symbols
+        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
-
-    public String getdescreption(){
+    
+    public String getDescription(){
         return this.description;
     }
+
+    public String getisDone(){
+        return this.isDone?"True":"False";
+    }
+
+    //abstract String getTime();
+
+    //abstract String getRange();
+
+    public String getType(){
+        return this.type;
+    }
+
     public String getLetterType(){
-        System.out.println(this.getClass());
+        //System.out.println(this.getClass());
         if(this.type.equals("ToDO")){
             return "T";
         }
@@ -41,14 +54,4 @@ abstract class Task {
         //isDone ? this.isDone = false : this.isDone = true;
     }
 
-/**         if(this.isDone == false){
-            return(this.index + ".[\u2718]"+this.descreption);
-        }
-        else{
-            return(this.index + ".[\u2713] "+this.descreption);
-        }
-    }
-*/
-
-    //...
 }

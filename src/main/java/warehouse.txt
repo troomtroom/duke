@@ -1,0 +1,4 @@
+E;False;False;3pm to 5 pm monday;
+E;False;just do it ;tomorrow;
+D;False;yellow fever ;1943;
+D;False;2103 hw ;3 days;
