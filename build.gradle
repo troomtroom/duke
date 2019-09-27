@@ -11,6 +11,5 @@ repositories {
 }
 
 application {
-    mainClassName = "Duke"
+    mainClassName = "Run"
 }
-
