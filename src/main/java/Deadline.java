@@ -9,10 +9,10 @@ class Deadline extends Task {
     }
 
     public String toString() {
-        return ("[" + "D" + "][" + this.getStatusIcon() + "] "
-                + this.description
-                + " (by: " + this.by.showtime() + ")"
-        );
+        return ("[" + "D" + "]["
+                + this.getStatusIcon() + "] "
+                + this.description + " (by: "
+                + this.by.showtime() + ")");
     }
 
     public Time getby() {
