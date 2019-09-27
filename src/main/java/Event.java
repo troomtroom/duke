@@ -10,13 +10,9 @@ class Event extends Task {
 
     public String toString() {
         return ("[" + "E" + "]["
-                + this.getStatusIcon()
-                + "] "
+                + this.getStatusIcon() + "] "
                 + this.description
-                + " (at: "
-                + this.at.showtime()
-                + ")"
-        );
+                + " (at: " + this.at.showtime() + ")");
     }
 
     public Time getat() {
