@@ -79,10 +79,17 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
+<<<<<<< HEAD
 set CLASSPATH=%APP_HOME%\lib\duke-0.1.0.jar
 
 @rem Execute duke
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DUKE_OPTS%  -classpath "%CLASSPATH%" Duke %CMD_LINE_ARGS%
+=======
+set CLASSPATH=%APP_HOME%\lib\duke-0.1.0.jar;%APP_HOME%\lib\javafx-fxml-11-win.jar;%APP_HOME%\lib\javafx-fxml-11-mac.jar;%APP_HOME%\lib\javafx-fxml-11-linux.jar;%APP_HOME%\lib\javafx-web-11-win.jar;%APP_HOME%\lib\javafx-web-11-mac.jar;%APP_HOME%\lib\javafx-web-11-linux.jar;%APP_HOME%\lib\javafx-controls-11-win.jar;%APP_HOME%\lib\javafx-controls-11-mac.jar;%APP_HOME%\lib\javafx-controls-11-linux.jar;%APP_HOME%\lib\javafx-controls-11.jar;%APP_HOME%\lib\javafx-media-11-win.jar;%APP_HOME%\lib\javafx-media-11-mac.jar;%APP_HOME%\lib\javafx-media-11-linux.jar;%APP_HOME%\lib\javafx-media-11.jar;%APP_HOME%\lib\javafx-graphics-11-win.jar;%APP_HOME%\lib\javafx-graphics-11-mac.jar;%APP_HOME%\lib\javafx-graphics-11-linux.jar;%APP_HOME%\lib\javafx-graphics-11.jar;%APP_HOME%\lib\javafx-base-11-win.jar;%APP_HOME%\lib\javafx-base-11-mac.jar;%APP_HOME%\lib\javafx-base-11-linux.jar;%APP_HOME%\lib\javafx-base-11.jar
+
+@rem Execute duke
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DUKE_OPTS%  -classpath "%CLASSPATH%" Run %CMD_LINE_ARGS%
+>>>>>>> 2cdf26903eca468a95ad9d9258119cf03d743147
 
 :end
 @rem End local scope for the variables with windows NT shell
