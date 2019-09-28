@@ -3,4 +3,4 @@ public class Run {
         new Duke("/mnt/c/users/kartike/desktop/nus/semester3/cs2103/duke/data/warehouse.txt").run();
     }
 }
-//Coding Standard added
+//A-Gradle added
