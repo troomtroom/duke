@@ -25,6 +25,13 @@ public class Parser {
                 IO.output("â˜¹ OOPS!!! The description of a delete cannot be empty.");
                 return new IlleagalCommand();
             }
+        } else if (inputstring.split(" ")[0].equals("find")) {
+            try {
+                return new FindCommand(inputstring.split(" ")[1]);
+            } catch (Exception e) {
+                System.out.println("â˜¹ OOPS!!! The Keyword of a find cannot be empty");
+                return new IlleagalCommand();
+            }
         } else if (inputstring.split(" ")[0].equals("todo")) {
             try {
                 return new AddCommand(new ToDO(inputstring.substring(5),false,"ToDO"));
