@@ -14,7 +14,6 @@ repositories {
 }
 
 dependencies {
-<<<<<<< HEAD
     String javaFxVersion = '11'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -34,8 +33,6 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'linux'
-=======
->>>>>>> c2f42c952248721716ca0bab71dc553ffeeab052
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
