@@ -1,20 +1,25 @@
-# User Guide
+# User Guide for Duke
 
 ## Features 
 
-### Feature 1 
-Description of feature.
+Keep Track of everything! 
+
+On just one command line interface, keep track of all deadlines, events and tasks you may have.
 
 ## Usage
 
-### `Keyword` - Describe action
+1. todo
 
-Describe action and its outcome.
+2. Find
 
-Example of usage: 
+3. Delete  
 
-`keyword (optional arguments)`
+4. markdone
 
-Expected outcome:
+5. Event
 
-`outcome`
+6. Deadline
+
+7. bye 
+
+ 
