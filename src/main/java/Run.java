@@ -1,6 +1,14 @@
+import java.io.File;
+
 public class Run {
+
+    public static String filepath = "warehouse.txt";
+
+    /**
+     * Run initiates the application with a load file.
+     *
+     */
     public static void main(String[] args) {
-        new Duke("/mnt/c/users/kartike/desktop/nus/semester3/cs2103/duke/data/warehouse.txt").run();
+        new Duke(filepath).run();
     }
 }
-//A-Gradle added

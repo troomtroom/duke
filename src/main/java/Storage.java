@@ -8,10 +8,11 @@ import java.io.File;
 
 public class Storage {
 
-    String file;
+    private File file;
+    private Scanner filereader;
 
-    public Storage(String file) {
-        this.file = file;
+    public Storage(String filepath) {
+        file = new File(filepath);
     }
 
     /**
@@ -21,10 +22,13 @@ public class Storage {
      * @throws FileNotFoundException if the passed file is absent
      */
     public LinkedList<Task> loadtext() throws FileNotFoundException {
-        String filetext = this.file;
-        File inpfile = new File(filetext);
-        Scanner filereader = new Scanner(inpfile);
+
         LinkedList<Task> storage = new LinkedList<>();
+        try {
+            initialize();
+        } catch (Exception a) {
+            IO.output("initialization IO error");
+        }
 
         try {
             while (filereader.hasNextLine()) {
@@ -68,7 +72,7 @@ public class Storage {
      * @param input string to be converted
      * @return Time value
      */
-    public static Time strToTime(String input) {
+    private Time strToTime(String input) {
         // 2021 4 1 19 23
         String[] div = input.split(" ");
         int day = Integer.parseInt(div[0]);
@@ -77,6 +81,25 @@ public class Storage {
         int hour = Integer.parseInt(div[3]);
         int minute = Integer.parseInt(div[4]);
         return new Time(day,month,year, hour,minute);
+    }
+
+    /**
+     * Creates Scanner to read the file to be loaded.
+     *
+     * @throws Exception If file is not found, or there is error in creating the file.
+     */
+    private void initialize() throws Exception {
+        try {
+            filereader = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            try {
+                file.createNewFile();
+                IO.output("Created file");
+                filereader = new Scanner(file);
+            } catch (IOException ex) {
+                IO.output("Couldn't create, Couldn't load file");
+            }
+        }
     }
 
     /**
@@ -111,7 +134,7 @@ public class Storage {
             }
         }
         try {
-            FileWriter fw = new FileWriter("/mnt/c/users/kartike/desktop/nus/semester3/cs2103/duke/data/warehouse.txt");
+            FileWriter fw = new FileWriter(Run.filepath);
             fw.write(entrystring);
             fw.close();
         } catch (IOException e) {

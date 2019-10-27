@@ -58,7 +58,7 @@ public class IO {
     }
 
     public void showLoadingError(String desc) {
-        output("Error couldnt load lol");
+        output("Error couldnt load : " + desc);
     }
 
     public void showError(String desc) {
