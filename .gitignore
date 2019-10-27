@@ -12,7 +12,7 @@
 build/distributions/duke-0.1.0.tar
 /build/distributions/duke-0.1.0.tar
 src/main/resources/docs/
-
+/.git
 # MacOS custom attributes files created by Finder
 .DS_Store
 *.iml
