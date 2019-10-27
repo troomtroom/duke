@@ -5,7 +5,12 @@
 
 # Gradle build files
 /.gradle/
+/.build/*
+/build/*
 /.build/
+/build/
+build/distributions/duke-0.1.0.tar
+/build/distributions/duke-0.1.0.tar
 src/main/resources/docs/
 
 # MacOS custom attributes files created by Finder
